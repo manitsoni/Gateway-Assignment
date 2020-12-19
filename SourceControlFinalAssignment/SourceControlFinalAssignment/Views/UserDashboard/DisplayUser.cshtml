@@ -1,0 +1,56 @@
+﻿@using SourceControlFinalAssignment.Models
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserDashboard.cshtml";
+}
+
+<div class="container">
+    @{ 
+        SourceControlEntities db = new SourceControlEntities();
+        int id = ViewBag.id;
+        var user = db.tblUserDetails.Where(m => m.Id == id).ToList();
+    }
+    @foreach (var item in user)
+    {
+        <table style="width:100%" class="table table-hover">
+            <tr>
+                <th>Name:</th>
+                <td>@item.Name</td>
+            </tr>
+            <tr>
+                <th>Email:</th>
+                <td>@item.Email</td>
+            </tr>
+            <tr>
+                <th>Photo:</th>
+                <td><img src="~/UserImage/@item.Photo" alt="Alternate Text" width="150" height="100" style="box-shadow:0px 4px 8px;" /></td>
+            </tr>
+            <tr>
+                <th>Credit Card Number</th>
+                <td>@item.CreditcardNumber</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>@item.AddressLine1+@item.AddressLine2</td>
+            </tr>
+            <tr>
+                <th>Pincode</th>
+                <td>@item.Pincode</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>@item.City</td>
+            </tr>
+            <tr>
+                <th>State</th>
+                <td>@item.State</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>@item.Country</td>
+            </tr>
+        </table>
+
+    }
+</div>

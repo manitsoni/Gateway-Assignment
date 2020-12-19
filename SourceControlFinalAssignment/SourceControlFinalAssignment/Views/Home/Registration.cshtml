@@ -1,0 +1,46 @@
+﻿@model SourceControlFinalAssignment.Models.UserRegistration
+@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_UserAccount.cshtml";
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()   
+    <div class="login100-form">      
+        <span class="login100-form-title">
+            Registration
+        </span>
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="wrap-input100">
+          
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "input100",@placeholder="Enter Username" } })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+           
+        </div>
+        <div class="wrap-input100">
+           
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "input100" ,@placeholder="Enter Email"} })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            
+        </div>
+        <div class="wrap-input100">
+          
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "input100",@placeholder="Enter Password" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+           
+        </div>
+        <div class="container-login100-form-btn">
+            <input type="submit" value="Create" class="login100-form-btn" />
+        </div>
+        <div class="text-center p-t-12">
+            <a class="txt2" href="~/Home/Login">
+               Already Have An Account? Login Here
+                <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
